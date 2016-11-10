@@ -1,0 +1,15 @@
+<div *ngFor="let node of treeData">
+    <input type="button" value="-" *ngIf="node.children.length != 0 && node.childVisual" 
+            #extendBtn (click)="node.childVisual=!node.childVisual;"
+            />
+     <input type="button" value="+" *ngIf="node.children.length != 0 && !node.childVisual "
+            #extendBtn (click)="node.childVisual=!node.childVisual;"
+            />
+    <span [class.margin-20]="node.children.length === 0"></span>
+    <span>
+        {{node.value}}
+    </span>
+    <div *ngIf="node.childVisual && node.children.length != 0" class="div-Area">
+        <my-node [treeData] = "node.children" ></my-node>
+    </div> 
+</div>
